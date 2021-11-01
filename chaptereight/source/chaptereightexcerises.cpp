@@ -10,10 +10,6 @@
 
 using namespace std;
 
-// NAMESPACES AND EXCEPTIONS
-
-// 8.5.7: Find the error in the first version of main() in 8.3.3.1
-
 void doubleLinkAssignment() {
   DLink::insertAtIndex(0, "Ruby");
   DLink::insertAtIndex(0, "C");
