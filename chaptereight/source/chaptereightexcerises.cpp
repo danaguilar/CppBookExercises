@@ -1,8 +1,11 @@
 # include <iostream>
+# include <iomanip>
+# include <time.h>
 # include <vector>
 # include <algorithm>
 # include "doublelink.h"
 # include "exceptionthrowing.h"
+# include "exceptiondepth.h"
 
 using namespace std;
 
@@ -32,6 +35,24 @@ void throwingExceptionExercise() {
   ThrowingExceptions::catchFunction();
 }
 
+void exceptionDepthExercise() {
+  while(true) {
+    try {
+      std::cout << "Enter level of exception throwing (1-10)\n";
+      int response;
+      cin >> response;
+      if(response < 1 || response > 10) break;
+      ExceptionDepth::recursiveFunction(0, response);
+    } catch(ExceptionDepth::MyException e) {
+      time_t endTime;
+      time(&endTime);
+      double time_taken = e.thrownTime - endTime;
+      std::cout << "Exception caught at depth of " << e.depth << std::endl;
+      std::cout << "Time sense excption call: " << setprecision(5) << time_taken << std::endl;
+    }
+  }
+}
+
 int main() {
   while(true) {
     std::cout << "CHOOSE AND ASSIGNMENT\n";
@@ -54,7 +75,7 @@ int main() {
         std::cout << "\n\n";
         break;
       case '3':
-        std::cout << "NOT YET COMPLTED";
+        exceptionDepthExercise();
         std::cout << "\n\n";
         break;
       case '4':
