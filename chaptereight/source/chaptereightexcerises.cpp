@@ -6,6 +6,7 @@
 # include "doublelink.h"
 # include "exceptionthrowing.h"
 # include "exceptiondepth.h"
+# include "throwperformance.h"
 
 using namespace std;
 
@@ -33,6 +34,23 @@ void doubleLinkAssignment() {
 
 void throwingExceptionExercise() {
   ThrowingExceptions::catchFunction();
+}
+
+void throwPerfomanceExercise() {
+  clock_t throw_start, throw_end, return_start, return_end;
+  return_start = clock();
+  ThrowPerformance::controllingFunction(false);
+  return_end = clock();
+  try{
+    throw_start = clock();
+    ThrowPerformance::controllingFunction(true);
+  } catch(ThrowPerformance::MyException e) {
+    throw_end = clock();
+  }
+  double return_time = double(return_end - return_start) / double(CLOCKS_PER_SEC);
+  double throw_time = double(throw_end - throw_start) / double(CLOCKS_PER_SEC);
+  std::cout << "Time taken on return is : " << fixed << return_time << setprecision(9) << std::endl;
+  std::cout << "Time taken on throw is : " << fixed << throw_time << setprecision(9) << std::endl;
 }
 
 void exceptionDepthExercise() {
@@ -79,7 +97,7 @@ int main() {
         std::cout << "\n\n";
         break;
       case '4':
-        std::cout << "NOT YET COMPLTED";
+        throwPerfomanceExercise();
         std::cout << "\n\n";
         break;
       case 'q':
