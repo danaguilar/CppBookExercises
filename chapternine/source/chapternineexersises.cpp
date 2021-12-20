@@ -1,12 +1,5 @@
-# include <iostream>
-
-// 9.6.1: Find where the standard library header are kept on this system and list their names. Are the non-standard libraries kept there
-//        there as well? Can any nonstandard headers be #included using the <> notation? Where are the headers for nonstandard "foundation" libraries kept?
-
-// 9.6.3: Write a program that reads a source file and writes out the names of files #included. Indent file names to show files #included by included files.
-//        Try this program on some real source files (to get an idea of the amount of information included)
-// 9.6.4: Modify this program to print the number comment lines, the number of non-comment lines, and the number of non-comment, whitespace-separated words
-//        in each file #included
+#include <iostream>
+#include "includedata.h"
 
 // 9.6.5: An external include guard is a construct that tests outside the file it is guarding and includes only once per compilation. Define
 //        suce a construct, devise a way of testing it, and discuss its advantages and disadvantages compared to the include gaurds. Is there any significant run-time advantage to external include guards?
@@ -24,6 +17,13 @@
 
 using namespace std;
 
+void includeDataExercise() {
+  cout << "Give path to source file\n";
+  std::string sourcePath;
+  cin >> sourcePath;
+  IncludeData::showSourceFileIncludeData(sourcePath, true);
+}
+
 int main() {
   while(true) {
     std::cout << "CHOOSE AN ASSIGNMENT\n";
@@ -36,7 +36,7 @@ int main() {
 
     switch(response) {
       case '1':
-        std::cout << "NOT YET DONE";
+        includeDataExercise();
         std::cout << "\n\n";
         break;
       case '2':
